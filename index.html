@@ -5,90 +5,382 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Privacy Policy - Twilight Keepers</title>
   <style>
+    :root {
+      --bg: #0f1020;
+      --bg-deep: #080914;
+      --panel: rgba(27, 29, 54, 0.92);
+      --panel-light: rgba(42, 45, 80, 0.88);
+      --text: #f4efe3;
+      --muted: #c9bfa8;
+      --line: rgba(218, 187, 112, 0.28);
+      --gold: #d9b45f;
+      --gold-light: #f3d58b;
+      --accent: #8e6de8;
+      --danger: #b85c66;
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg-deep);
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.7;
-      max-width: 860px;
+      margin: 0;
+      min-height: 100vh;
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans JP",
+        sans-serif;
+      line-height: 1.8;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(142, 109, 232, 0.22), transparent 34%),
+        radial-gradient(circle at top right, rgba(217, 180, 95, 0.18), transparent 28%),
+        linear-gradient(180deg, #13142a 0%, #0f1020 45%, #080914 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 72%);
+    }
+
+    .page {
+      width: min(960px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 32px 20px;
-      color: #222;
-      background: #fff;
+      padding: 48px 0 64px;
     }
-    h1, h2 {
-      line-height: 1.3;
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 40px 28px;
+      background:
+        linear-gradient(135deg, rgba(217, 180, 95, 0.12), transparent 42%),
+        linear-gradient(180deg, rgba(42, 45, 80, 0.96), rgba(18, 19, 38, 0.96));
+      box-shadow: 0 24px 80px var(--shadow);
     }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(243, 213, 139, 0.22), transparent 66%);
+    }
+
+    .app-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 6px 12px;
+      border: 1px solid rgba(217, 180, 95, 0.36);
+      border-radius: 999px;
+      color: var(--gold-light);
+      background: rgba(8, 9, 20, 0.42);
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+
+    .app-label::before {
+      content: "✦";
+      color: var(--gold);
+    }
+
     h1 {
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 12px;
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.15;
+      letter-spacing: 0.02em;
+      color: var(--gold-light);
+      text-shadow: 0 2px 16px rgba(217, 180, 95, 0.16);
     }
+
+    .subtitle {
+      margin: 16px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
     .updated {
-      color: #666;
+      margin-top: 20px;
+      color: #b8ad98;
       font-size: 0.95rem;
     }
-    hr {
-      margin: 32px 0;
-      border: 0;
-      border-top: 1px solid #ddd;
+
+    .content {
+      margin-top: 28px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+      background:
+        linear-gradient(180deg, var(--panel), rgba(17, 18, 36, 0.94));
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--gold-light);
+      font-size: 1.45rem;
+      line-height: 1.35;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      box-shadow: 0 0 16px rgba(217, 180, 95, 0.45);
+      transform: rotate(45deg);
+      flex: 0 0 auto;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    .note {
+      color: var(--muted);
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .summary-list li {
+      position: relative;
+      padding: 12px 14px 12px 40px;
+      border: 1px solid rgba(217, 180, 95, 0.18);
+      border-radius: 14px;
+      background: rgba(8, 9, 20, 0.32);
+      color: var(--text);
+    }
+
+    .summary-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 14px;
+      top: 12px;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .lang-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 34px 0 12px;
+      color: var(--gold-light);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.86rem;
+    }
+
+    .lang-divider::before,
+    .lang-divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--line);
+    }
+
+    a {
+      color: var(--gold-light);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(243, 213, 139, 0.4);
+    }
+
+    a:hover {
+      color: #fff2bd;
+      border-bottom-color: #fff2bd;
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 20px;
+      text-align: center;
+      color: #9f947f;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 960px);
+        padding: 24px 0 40px;
+      }
+
+      .hero {
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
+
+      .card {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>プライバシーポリシー</h1>
-  <p class="updated">制定日：2026年5月26日</p>
+  <main class="page">
+    <section class="hero">
+      <div class="app-label">Twilight Keepers</div>
+      <h1>Privacy Policy</h1>
+      <p class="subtitle">
+        This page explains how Twilight Keepers handles user information.
+        The app is designed as an offline single-player game.
+      </p>
+      <p class="updated">制定日 / Effective date: 2026年5月26日 / May 26, 2026</p>
+    </section>
 
-  <p>
-    Twilight Keepers（以下「本アプリ」）は、ユーザーの個人情報を収集しません。
-  </p>
+    <div class="content">
+      <section class="card">
+        <h2 class="section-title">プライバシーポリシー</h2>
+        <p>
+          Twilight Keepers（以下「本アプリ」）は、ユーザーの個人情報を収集しません。
+        </p>
+        <p class="note">
+          本アプリは、オフラインで遊ぶことを前提としたシングルプレイヤー向けゲームです。
+        </p>
 
-  <h2>収集する情報</h2>
-  <p>
-    本アプリは、氏名、メールアドレス、位置情報、連絡先、写真、音声、カメラ、広告ID、端末IDなどの個人情報または端末情報を収集しません。
-  </p>
+        <ul class="summary-list">
+          <li>広告を表示しません。</li>
+          <li>アクセス解析を行いません。</li>
+          <li>ログイン機能を使用しません。</li>
+          <li>外部サーバーへセーブデータを送信しません。</li>
+          <li>位置情報、連絡先、写真、音声、カメラ、広告ID、端末IDを収集しません。</li>
+        </ul>
+      </section>
 
-  <h2>広告・解析・外部送信</h2>
-  <p>
-    本アプリは、広告、アクセス解析、ログイン機能、外部サーバーへのデータ送信を行いません。
-  </p>
+      <section class="card">
+        <h2 class="section-title">収集する情報</h2>
+        <p>
+          本アプリは、氏名、メールアドレス、位置情報、連絡先、写真、音声、カメラ、広告ID、端末IDなどの個人情報または端末情報を収集しません。
+        </p>
+      </section>
 
-  <h2>セーブデータ</h2>
-  <p>
-    本アプリのセーブデータは、ユーザーの端末内に保存されます。開発者がセーブデータを収集、閲覧、共有することはありません。
-  </p>
+      <section class="card">
+        <h2 class="section-title">広告・解析・外部送信</h2>
+        <p>
+          本アプリは、広告、アクセス解析、ログイン機能、外部サーバーへのデータ送信を行いません。
+        </p>
+      </section>
 
-  <h2>お問い合わせ</h2>
-  <p>
-  本アプリに関するお問い合わせは、以下のメールアドレスまでお願いいたします。<br>
-  81app.dev@gmail.com
-　</p>
+      <section class="card">
+        <h2 class="section-title">セーブデータ</h2>
+        <p>
+          本アプリのセーブデータは、ユーザーの端末内に保存されます。開発者がセーブデータを収集、閲覧、共有することはありません。
+        </p>
+      </section>
 
-  <hr>
+      <section class="card">
+        <h2 class="section-title">お問い合わせ</h2>
+        <p>
+          本アプリに関するお問い合わせは、以下のメールアドレスまでお願いいたします。
+        </p>
+        <p>
+          <a href="mailto:81app.dev@gmail.com">81app.dev@gmail.com</a>
+        </p>
+      </section>
 
-  <h1>Privacy Policy</h1>
-  <p class="updated">Effective date: May 26, 2026</p>
+      <div class="lang-divider">English</div>
 
-  <p>
-    Twilight Keepers does not collect any personal information from users.
-  </p>
+      <section class="card">
+        <h2 class="section-title">Privacy Policy</h2>
+        <p>
+          Twilight Keepers does not collect any personal information from users.
+        </p>
+        <p class="note">
+          This app is designed as an offline single-player game.
+        </p>
 
-  <h2>Information Collection</h2>
-  <p>
-    This app does not collect personal or device information such as names, email addresses, location information, contacts, photos, audio, camera data, advertising ID, or device ID.
-  </p>
+        <ul class="summary-list">
+          <li>This app does not display advertisements.</li>
+          <li>This app does not use analytics.</li>
+          <li>This app does not use login features.</li>
+          <li>This app does not send save data to external servers.</li>
+          <li>This app does not collect location information, contacts, photos, audio, camera data, advertising ID, or device ID.</li>
+        </ul>
+      </section>
 
-  <h2>Advertisements, Analytics, and External Communication</h2>
-  <p>
-    This app does not use advertisements, analytics, login features, or external server communication.
-  </p>
+      <section class="card">
+        <h2 class="section-title">Information Collection</h2>
+        <p>
+          This app does not collect personal or device information such as names, email addresses, location information, contacts, photos, audio, camera data, advertising ID, or device ID.
+        </p>
+      </section>
 
-  <h2>Save Data</h2>
-  <p>
-    Save data is stored only on the user's device. The developer does not collect, view, or share save data.
-  </p>
+      <section class="card">
+        <h2 class="section-title">Advertisements, Analytics, and External Communication</h2>
+        <p>
+          This app does not use advertisements, analytics, login features, or external server communication.
+        </p>
+      </section>
 
-  <h2>Contact</h2>
-  <p>
-  For inquiries, please contact us at the following email address:<br>
-  81app.dev@gmail.com
-　</p>
+      <section class="card">
+        <h2 class="section-title">Save Data</h2>
+        <p>
+          Save data is stored only on the user's device. The developer does not collect, view, or share save data.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Contact</h2>
+        <p>
+          For inquiries, please contact us at the following email address.
+        </p>
+        <p>
+          <a href="mailto:81app.dev@gmail.com">81app.dev@gmail.com</a>
+        </p>
+      </section>
+    </div>
+
+    <footer class="footer">
+      © 2026 Twilight Keepers
+    </footer>
+  </main>
 </body>
 </html>
